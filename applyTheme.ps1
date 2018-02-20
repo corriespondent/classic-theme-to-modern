@@ -3,13 +3,9 @@
 Applies a Classic Theme for a modern site
 
 .EXAMPLE
-Apply theme (without background image)
+Apply theme
 PS C:\> $Credentials = Get-Credential
 PS C:\> .\applyTheme.ps1  -url "https://yourtenant.sharepoint.com/sites/yoursite" -Credentials $Credentials 
-
-Apply theme (with background image)
-PS C:\> $Credentials = Get-Credential
-PS C:\> .\applyTheme.ps1  -url "https://yourtenant.sharepoint.com/sites/yoursite" -Credentials $Credentials -background 
 
 #>
 
@@ -20,8 +16,6 @@ param
     [Parameter(Mandatory = $true, HelpMessage="Enter the Modern site URL, e.g. 'https://yourtenant.sharepoint.com/sites/yoursite'")]
     [String]
     $url,
-
-    [switch]$background = $false,
 
     [Parameter(Mandatory = $false, HelpMessage="Optional administration credentials")]
     [PSCredential]
@@ -76,11 +70,7 @@ if($web)
 
         $colorPaletteUrl = $web.ServerRelativeUrl + "/SiteAssets/test.spcolor"
         $fontSchemeUrl = Out-Null
-        if($background){
-            $backgroundImageUrl = $web.ServerRelativeUrl + "/SiteAssets/demo-bg.png"
-        } else {
-            $backgroundImageUrl = Out-Null
-        }
+        $backgroundImageUrl = Out-Null
         $shareGenerated = $true;
         Write-Host -ForegroundColor Yellow " -- Applying theme"
         $web.ApplyTheme($colorPaletteUrl, $fontSchemeUrl, $backgroundImageUrl, $shareGenerated)
