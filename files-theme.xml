@@ -9,7 +9,6 @@
 
         <!-- Theme files -->
         <pnp:File Src="test.spcolor" Folder="SiteAssets" Overwrite="true" />
-        <pnp:File Src="demo-bg.png" Folder="SiteAssets" Overwrite="true" />
 
       </pnp:Files>
 
